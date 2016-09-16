@@ -48,6 +48,7 @@ Snake.prototype.update = function(elapsedTime) {
       if(this.x > this.rightBound) this.state = "left";
       break;
   }
+  this.color = "#00000000";
 }
 
 /**
@@ -75,4 +76,6 @@ Snake.prototype.render = function(time, ctx) {
       this.x, this.y, 2*this.width, 2*this.height
     );
   }
+  ctx.strokeStyle
+  ctx.strokeRect(this.x, this.y, this.height);
 }

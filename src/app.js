@@ -1,13 +1,15 @@
 "use strict";
 
 /* Classes */
-const Game = require('./game.js');
-const Player = require('./player.js');
-const Snake = require('./snake.js');
+const Game = require('./game');
+const Player = require('./player');
+const Snake = require('./snake');
+const EntityManager = require('./entity-manager');
 
 /* Global variables */
 var canvas = document.getElementById('screen');
 var game = new Game(canvas, update, render);
+var entities = new EntityManager(128);
 var player = new Player({x: 382, y: 440});
 var snakes = [];
 for(var i=0; i < 20; i++) {
@@ -15,8 +17,10 @@ for(var i=0; i < 20; i++) {
     x: Math.random() * 760,
     y: Math.random() * 20 + 100
   }));
+  entities.add(snake);
 }
-snakes.sort(function(s1, s2){return s1.x, s2.y}; //check this line.
+snakes.sort(function(s1, s2){return s1.y - s2.y}; .
+
 /**
  * @function masterLoop
  * Advances the game in sync with the refresh rate of the screen
@@ -41,6 +45,11 @@ function update(elapsedTime) {
   player.update(elapsedTime);
   snakes.forEach(function(snake) { snake.update(elapsedTime);});
   // TODO: Update the game objects
+  
+  entities.collide(function(entity1, entity2){
+	  entity1.color = 'red';
+	  entity2.color = 'red';
+  }
 }
 
 /**

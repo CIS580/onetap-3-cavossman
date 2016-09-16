@@ -45,6 +45,7 @@ Player.prototype.update = function(elapsedTime) {
       this.y -= 1;
       break;
   }
+  this.color = "#00000000";
 }
 
 /**
